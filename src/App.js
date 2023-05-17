@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react'
+import { getShuffleTheCards, getDrawACards } from './services'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [deckId, setdeckId] = useState(null)
+	
+	const fetchData = async () => {
+		const deckCount = 1
+		const { data } = await getShuffleTheCards(deckCount)
+		setdeckId(data)
+	}
+	console.log(deckId)
+	useEffect(() => {
+		fetchData()
+	}, [])
+
+	useEffect(() => {
+		fetchDataCard()
+	}, [deckId != null])
+
+	const fetchDataCard = async () => {
+		const deckCount = 3
+		const { data } = await getDrawACards(deckId.deck_id, deckCount)
+		setdeckId(data)
+	}
+
+	return (
+		<div className='App'>
+			<h1>hola</h1>
+		</div>
+	)
 }
 
-export default App;
+export default App
