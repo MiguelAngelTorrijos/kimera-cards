@@ -1,13 +1,26 @@
 import { useContext } from 'react'
-import { resetDeck } from '../../services'
+import { getDeckOfCards, resetDeck } from '../../services'
 import { DeckContext } from '../../context/deckContext'
+import { Button, ButtonStyles } from '../ui/Button'
 
 const RestardDeck = () => {
-	const { deckId } = useContext(DeckContext)
+	const { deckId, setdeckId, setUserFlow, setRemainingSt } =
+		useContext(DeckContext)
 
 	const fetchDataShuffle = async () => {
 		await resetDeck(deckId.deck_id)
 		localStorage.clear()
+		setUserFlow([])
+		setRemainingSt(deckId.remaining)
+		fetchData()
+	}
+
+	const fetchData = async () => {
+		const deckCount = 1
+		const { data } = await getDeckOfCards(deckCount)
+		setdeckId(data)
+		localStorage.setItem('remaining', data.remaining)
+		setRemainingSt(data.remaining)
 	}
 
 	const handleRestardDeck = () => {
@@ -18,7 +31,12 @@ const RestardDeck = () => {
 
 	return (
 		<>
-			<button onClick={() => handleRestardDeck()}>Reiniciar Baraja</button>
+			<Button
+				centered
+				onClick={() => handleRestardDeck()}
+				text={'Reiniciar Baraja'}
+				styles={ButtonStyles.ALT_1}
+			/>
 		</>
 	)
 }

@@ -1,0 +1,19 @@
+.flow-container {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	max-width: 1000px;
+	margin: 150px 0 0 124px;
+
+	.card {
+		display: flex;
+		width: 170px;
+		height: fit-content;
+		box-shadow: 4px 10px 9px -1px rgba(0, 0, 0, 0.47);
+		margin: -80px 0 0 -124px;
+
+		img {
+			overflow: hidden;
+		}
+	}
+}

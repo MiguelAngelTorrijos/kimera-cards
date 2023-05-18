@@ -6,12 +6,15 @@ export const DeckContext = createContext()
 
 export const DeckProvider = ({ children }) => {
 	const [deckId, setdeckId] = useState(null)
+	const [userFlow, setUserFlow] = useState([])
+	const [remainingSt, setRemainingSt] = useState()
 
 	const fetchData = async () => {
 		const deckCount = 1
 		const { data } = await getDeckOfCards(deckCount)
 		setdeckId(data)
 		localStorage.setItem('remaining', data.remaining)
+		setRemainingSt(data.remaining)
 	}
 
 	useEffect(() => {
@@ -23,6 +26,10 @@ export const DeckProvider = ({ children }) => {
 			value={{
 				deckId,
 				setdeckId,
+				userFlow,
+				setUserFlow,
+				remainingSt,
+				setRemainingSt,
 			}}
 		>
 			{children}

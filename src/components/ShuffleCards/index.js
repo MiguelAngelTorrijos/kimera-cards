@@ -1,13 +1,14 @@
 import { useContext } from 'react'
 import { getReshuffletheCards } from '../../services'
 import { DeckContext } from '../../context/deckContext'
-// import GetCard from '../GetCard/GetCard'
+import { Button, ButtonStyles } from '../ui/Button'
 
 const ShuffleCards = () => {
-	const { deckId } = useContext(DeckContext)
+	const { deckId, remainingSt } = useContext(DeckContext)
 
 	const fetchDataShuffle = async () => {
 		await getReshuffletheCards(deckId.deck_id)
+		window.alert('Barajando el resto')
 	}
 
 	const handleShuffle = () => {
@@ -18,7 +19,13 @@ const ShuffleCards = () => {
 
 	return (
 		<>
-			<button onClick={() => handleShuffle()}>barajar</button>
+			<Button
+				centered
+				disabled={remainingSt === 0}
+				onClick={() => handleShuffle()}
+				text={'Barajar'}
+				styles={ButtonStyles.ALT_2}
+			/>
 		</>
 	)
 }

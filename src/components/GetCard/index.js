@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { DeckContext } from '../../context/deckContext'
 import { addingToPiles, getDrawACards } from '../../services'
+import { Button } from '../ui/Button'
 
 const GetCard = () => {
-	const { deckId } = useContext(DeckContext)
+	const { deckId, setUserFlow, userFlow, setRemainingSt, remainingSt } =
+		useContext(DeckContext)
 	const [codeCards, setCodeCards] = useState([])
 
 	const fetchDataCard = async () => {
@@ -12,9 +14,10 @@ const GetCard = () => {
 		const userPile = JSON.parse(localStorage.getItem('userPile')) || []
 
 		localStorage.setItem('remaining', data.remaining)
+		setRemainingSt(data.remaining)
 		userPile.push(data.cards[0])
 		localStorage.setItem('userPile', JSON.stringify(userPile))
-
+		setUserFlow([...userFlow, data.cards[0]])
 		const updatedUserDeckPile = JSON.parse(localStorage.getItem('userPile'))
 		const extractedCodes = updatedUserDeckPile.map(obj => obj.code)
 		setCodeCards(extractedCodes)
@@ -35,16 +38,18 @@ const GetCard = () => {
 		}
 	}
 
+	remainingSt === 0 && window.alert('No hay cartas, reinicia la baraja')
+
 	return (
 		<>
-			<button
-				disabled={deckId?.remaining === 0}
+			<Button
+				centered
+				disabled={remainingSt === 0}
 				onClick={() => {
 					handleGetCard()
 				}}
-			>
-				dame una carta
-			</button>
+				text={'	Dame una carta'}
+			/>
 		</>
 	)
 }

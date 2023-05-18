@@ -1,0 +1,56 @@
+@import '../../../styles/variables/colors';
+
+.main-button {
+	display: flex;
+	width: 100%;
+	height: 37px;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	border: none;
+	padding: 16px 24px;
+	transition: padding 0.25s, background-color 0.25s;
+	background-color: $gray;
+
+	&:hover,
+	&:focus {
+		background-color: $grayDark;
+	}
+
+	&.centered {
+		justify-content: center;
+	}
+
+	&.disabled {
+		opacity: 0.4;
+	}
+
+	&.alt1 {
+		background: $red;
+		&:hover,
+		&:focus {
+			background-color: $redDark;
+		}
+
+		span {
+			color: $white;
+		}
+	}
+
+	&.alt2 {
+		background: $blackMiddle;
+		&:hover,
+		&:focus {
+			background-color: $black;
+		}
+
+		span {
+			color: $white;
+		}
+	}
+
+	span {
+		color: $smokeWhite;
+		font-size: 16px;
+	}
+}
