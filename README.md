@@ -1,6 +1,6 @@
 # KimeraCards
 
-The card application project is a frontend project in its entirety, the deck of card api has been used. 
+The card application project is a frontend project in its entirety, the deck of card api has been used.
 For more information you can visit their page at https://deckofcardsapi.com/
 
 In this development you will be able to shuffle the cards from your stack and deck and also paint the cards on the table flow.
@@ -19,19 +19,24 @@ Here is an example:
 npm install
 yarn install
 ```
+
 To start the frontend in dev mode run
+
 ```bash
 npm run start
 or
 npm start
 ```
+
 ## Project built with:
 
 React, Scss and Axios.
 
-Muchas gracias por tu visita, espero que te guste.
+Thank you very much for your visit, I hope you like it.
 Happy coding! 👨‍💻
 
 Mats 2023 ☠️
+
+```
 
 ```

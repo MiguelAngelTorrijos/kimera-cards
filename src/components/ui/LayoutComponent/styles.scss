@@ -1,6 +1,7 @@
 @import '../../../styles/variables/colors';
 
 .layout {
+	position: relative;
 	padding: 50px 24px 0 24px;
 	display: flex;
 	flex-direction: column;
